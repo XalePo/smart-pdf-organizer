@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+
+# Flask
+instance/
+.env
+.flaskenv
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# macOS
+.DS_Store

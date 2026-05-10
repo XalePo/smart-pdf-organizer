@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Smart PDF Organizer</title>
+    </head>
+    <body>
+        <h1>Smart PDF Organizer</h1>
+        <p>Upload your PDFs and organize them automatically.</p>
+
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="pdf_file" accept=".pdf">
+            <button type="submit">Upload your PDF</button>
+        </form>
+    </body>
+</html>

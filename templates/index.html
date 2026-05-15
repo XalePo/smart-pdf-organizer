@@ -12,6 +12,27 @@
             <p>{{ message }}</p>
         {% endif %}
 
+        {% if subject %}
+            <p>Suggested Category: {{ subject }}</p>
+        {% endif %}
+
+        {% if suggested_path %}
+            <p>Suggested folder: {{ suggested_path }}</p>
+        {% endif %}
+
+        {% if suggested_path and not final_path %}
+            <form method="POST" action="/move">
+                <input type="hidden" name="file_path" value="{{ file_path }}">
+                <input type="hidden" name="suggested_path" value="{{ suggested_path }}">
+                <input type="hidden" name="subject" value="{{ subject }}">
+                <button type="submit">Yes, move this PDF</button>
+            </form>
+        {% endif %}
+
+        {% if final_path %}
+            <p>Final location: {{ final_path }}</p>
+        {% endif %}
+
         <form method="POST" enctype="multipart/form-data">
             <input type="file" name="pdf_file" accept=".pdf">
             <button type="submit">Upload your PDF</button>

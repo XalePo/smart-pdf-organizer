@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Smart PDF Organizer</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> 
+    </head>
+    <body>
+        <div class="container">
+            <h1>Smart PDF Organizer</h1>
+            <p>Upload your PDFs and organize them automatically.</p>
+
+            {% if message %}
+                <p class="message">{{ message }}</p>
+            {% endif %}
+
+            {% if subject %}
+                <div class="info-box">
+                    <p><strong>Suggested Category:</strong> {{ subject }}</p>
+                </div>
+            {% endif %}
+
+            {% if suggested_path %}
+                <div class="info-box">
+                    <p><strong>Suggested folder:</strong> {{ suggested_path }}</p>
+                </div>
+            {% endif %}
+
+            {% if suggested_path and not final_path %}
+                <form method="POST" action="/move">
+                    <input type="hidden" name="file_path" value="{{ file_path }}">
+                    <input type="hidden" name="suggested_path" value="{{ suggested_path }}">
+                    <input type="hidden" name="subject" value="{{ subject }}">
+                    <button type="submit">Yes, move this PDF</button>
+                </form>
+            {% endif %}
+
+            {% if final_path %}
+                <div class="info-box">
+                    <p><strong>Final location:</strong> {{ final_path }}</p>
+                </div>
+            {% endif %}
+
+            <form method="POST" action="/" enctype="multipart/form-data">
+                <label for="pdf_file" class="file-label">Choose PDF</label>
+                <input id="pdf_file" type="file" name="pdf_file" accept=".pdf">
+                <button type="submit">Upload your PDF</button>
+            </form>
+        </div>
+    </body>
+</html>
